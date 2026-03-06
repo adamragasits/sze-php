@@ -1,6 +1,6 @@
 <?php
-    include_once 'db.php';
-    include_once 'kulcsok.php';
+    include_once __DIR__ . '/../db.php';
+    include_once __DIR__ . '/../kulcsok.php';
 
     if(isset($_POST['userinfoSubmit'])) {
         try{
