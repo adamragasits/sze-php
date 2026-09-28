@@ -1,0 +1,13 @@
+{
+    "name": "ragasitsadam/composer-test",
+    "autoload": {
+        "psr-4": {
+            "Ragasitsadam\\ComposerTest\\": "src/"
+        }
+    },
+    "authors": [],
+    "require": {
+        "doctrine/orm": "^3.7",
+        "predis/predis": "^3.6"
+    }
+}
