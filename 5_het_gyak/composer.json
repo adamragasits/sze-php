@@ -1,0 +1,17 @@
+{
+    "name": "ragasitsadam/3_het_gyak",
+    "autoload": {
+        "psr-4": {
+            "Ragasitsadam\\3HetGyak\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ragasits Ádám",
+            "email": "ragasits.adam@sze.hu"
+        }
+    ],
+    "require": {
+        "predis/predis": "^3.6"
+    }
+}
