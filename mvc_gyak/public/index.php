@@ -2,6 +2,8 @@
     require __DIR__ . "/../vendor/autoload.php";
 
     use App\Models\Todo;
+    use App\Controllers\TodoController;
+    use App\Router;
 
     $db = new mysqli(
         database: "AVR4GF",
@@ -13,6 +15,11 @@
     );
     $db->set_charset("utf8mb4");
 
-    $todoModel = new Todo($db);
-    print_r($todoModel->find(1));
+    $router = new Router();
+    $todoController = new TodoController(new Todo($db));
+
+    $router->get("/todos/{id}", [$todoController, "show"]);
+
+    $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $router->dispatch($_SERVER['REQUEST_METHOD'], $path);
 ?>
