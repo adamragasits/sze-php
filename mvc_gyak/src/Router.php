@@ -16,20 +16,20 @@ class Router
         $this->routes[] = [$method, '#^' . $regex . '$#', $handler];
     }
 
-    public function dispatch(string $method, string $path): void
+    public function dispatch(Request $request): void
     {
         $allowed = [];
         foreach ($this->routes as [$routeMethod, $regex, $handler]) {
-            if (!preg_match($regex, $path, $params)) {
+            if (!preg_match($regex, $request->path(), $params)) {
                 continue;
             }
 
-            if ($routeMethod !== $method) {
+            if ($routeMethod !== $request->method()) {
                 $allowed[] = $routeMethod;
                 continue;
             }
-
-            $handler(...array_map('intval', array_slice($params, 1)));
+            $args = array_map('intval', array_slice($params, 1));
+            $handler(...$args, ...[$request]);
             return;
         }
     }
