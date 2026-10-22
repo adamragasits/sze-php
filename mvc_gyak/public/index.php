@@ -4,6 +4,7 @@
     use App\Models\Todo;
     use App\Controllers\TodoController;
     use App\Router;
+    use App\Request;
 
     $db = new mysqli(
         database: "AVR4GF",
@@ -19,7 +20,7 @@
     $todoController = new TodoController(new Todo($db));
 
     $router->get("/todos/{id}", [$todoController, "show"]);
+    $router->post("/test", [$todoController, "create"]);
 
-    $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    $router->dispatch($_SERVER['REQUEST_METHOD'], $path);
+    $router->dispatch(Request::capture());
 ?>
